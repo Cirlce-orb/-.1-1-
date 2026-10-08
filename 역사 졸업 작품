@@ -1,0 +1,756 @@
+index.html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>1일 1한국사 인물</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #f5f1e8;
+    color: #302a24;
+    font-family: "Noto Serif KR", serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* ---------------- HEADER ---------------- */
+
+header {
+    height: 96px;
+    border-bottom: 1px solid #d9d0c1;
+    background: rgba(250,248,242,0.96);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 4%;
+}
+
+/* 영훈국제중학교 로고 */
+
+.school-logo {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.school-logo img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+
+    /* 흰색 배경이 있는 로고도 자연스럽게 보이게 */
+    mix-blend-mode: multiply;
+}
+
+.school-name {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #17225d;
+    font-weight: 600;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+    font-size: 15px;
+}
+
+nav a:hover {
+    opacity: 0.55;
+}
+
+.credit {
+    border-left: 1px solid #cfc6b8;
+    padding-left: 30px;
+
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #6f665d;
+}
+
+/* 모바일 메뉴 버튼 */
+
+.menu {
+    display: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* ---------------- HERO ---------------- */
+
+.hero {
+    min-height: 360px;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+
+    padding: 55px 7%;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(246,241,231,1) 0%,
+            rgba(246,241,231,.93) 38%,
+            rgba(246,241,231,.35) 75%,
+            rgba(246,241,231,.05) 100%
+        ),
+        url("https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1800&q=80");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+}
+
+.date {
+    font-size: 17px;
+    margin-bottom: 18px;
+}
+
+.weather {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 25px;
+}
+
+.weather-icon {
+    font-size: 37px;
+}
+
+.temperature {
+    font-size: 27px;
+}
+
+.weather-info {
+    font-size: 12px;
+    color: #766d63;
+}
+
+.hero-title {
+    font-size: clamp(38px, 5vw, 66px);
+    font-weight: 500;
+    letter-spacing: -3px;
+    margin-bottom: 12px;
+}
+
+.hero-subtitle {
+    font-size: 19px;
+    color: #71685e;
+}
+
+/* ---------------- MAIN CARD ---------------- */
+
+.container {
+    width: min(1120px, 90%);
+    margin: -35px auto 70px;
+    position: relative;
+    z-index: 5;
+}
+
+.main-card {
+    background: #fcfaf5;
+    border: 1px solid #e0d7c9;
+    border-radius: 14px;
+
+    box-shadow: 0 10px 35px rgba(67,54,39,.08);
+
+    padding: 48px;
+    
+    display: grid;
+    grid-template-columns: 1fr 310px;
+    gap: 45px;
+}
+
+.badge {
+    display: inline-block;
+
+    background: #80623d;
+    color: white;
+
+    padding: 7px 17px;
+    border-radius: 20px;
+
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.person-name {
+    font-size: clamp(38px, 5vw, 55px);
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.person-life {
+    color: #82786d;
+    font-size: 14px;
+    margin-bottom: 28px;
+}
+
+.highlight {
+    background: #f0e6d4;
+    padding: 18px 20px;
+    border-radius: 7px;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    margin-bottom: 22px;
+}
+
+.description {
+    font-size: 15px;
+    line-height: 2;
+    color: #554d45;
+}
+
+.more-button {
+    display: inline-block;
+
+    margin-top: 25px;
+
+    border: 1px solid #9b8364;
+    border-radius: 30px;
+
+    padding: 11px 24px;
+
+    font-size: 13px;
+
+    transition: .2s;
+}
+
+.more-button:hover {
+    background: #80623d;
+    color: white;
+}
+
+/* ---------------- SIDE CARD ---------------- */
+
+.side {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.side-card {
+    border: 1px solid #e0d7c9;
+    border-radius: 9px;
+
+    padding: 25px;
+
+    background: #fbf9f4;
+}
+
+.side-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+
+.side-text {
+    font-size: 14px;
+    line-height: 1.9;
+    color: #625950;
+}
+
+.side-more {
+    display: block;
+    text-align: right;
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+/* ---------------- ERA ---------------- */
+
+.eras {
+    width: min(1120px, 90%);
+    margin: 0 auto 80px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 22px;
+}
+
+.section-title h2 {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.section-title span {
+    font-size: 13px;
+    color: #756b61;
+}
+
+.era-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 13px;
+}
+
+.era {
+    background: #fbf9f4;
+    border: 1px solid #ddd4c7;
+
+    border-radius: 10px;
+    overflow: hidden;
+
+    transition: .2s;
+}
+
+.era:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(60,45,30,.08);
+}
+
+.era-image {
+    height: 110px;
+    background-size: cover;
+    background-position: center;
+}
+
+.era:nth-child(1) .era-image {
+    background-image: url("https://images.unsplash.com/photo-1564399579883-451a5d44ec08?auto=format&fit=crop&w=600&q=80");
+}
+
+.era:nth-child(2) .era-image {
+    background-image: url("https://images.unsplash.com/photo-1590402494682-cd3fb53b1f70?auto=format&fit=crop&w=600&q=80");
+}
+
+.era:nth-child(3) .era-image {
+    background-image: url("https://images.unsplash.com/photo-1580137189272-c9379f8864fd?auto=format&fit=crop&w=600&q=80");
+}
+
+.era:nth-child(4) .era-image {
+    background-image: url("https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?auto=format&fit=crop&w=600&q=80");
+}
+
+.era:nth-child(5) .era-image {
+    background-image: url("https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&w=600&q=80");
+}
+
+.era:nth-child(6) .era-image {
+    background-image: url("https://images.unsplash.com/photo-1538485399081-7c897c6f6c3e?auto=format&fit=crop&w=600&q=80");
+}
+
+.era-content {
+    padding: 16px;
+}
+
+.era-name {
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+.era-desc {
+    font-size: 11px;
+    color: #82786e;
+}
+
+/* ---------------- FOOTER ---------------- */
+
+footer {
+    background: #38332d;
+    color: #ddd6cc;
+
+    padding: 25px 5%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 11px;
+}
+
+footer .made {
+    font-size: 12px;
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media (max-width: 850px) {
+
+    header {
+        height: 72px;
+        padding: 0 20px;
+    }
+
+    .school-logo img {
+        width: 43px;
+        height: 43px;
+    }
+
+    .school-name {
+        display: none;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .credit {
+        display: none;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .hero {
+        min-height: 390px;
+        padding: 35px 25px;
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(246,241,231,.96),
+                rgba(246,241,231,.72)
+            ),
+            url("https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=1200&q=80");
+
+        background-position: center;
+    }
+
+    .date {
+        font-size: 14px;
+    }
+
+    .hero-title {
+        font-size: 42px;
+        letter-spacing: -2px;
+    }
+
+    .hero-subtitle {
+        font-size: 15px;
+    }
+
+    .container {
+        width: 94%;
+        margin-top: -25px;
+    }
+
+    .main-card {
+        grid-template-columns: 1fr;
+        padding: 28px 22px;
+        gap: 25px;
+    }
+
+    .person-name {
+        font-size: 38px;
+    }
+
+    .highlight {
+        font-size: 15px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    .eras {
+        width: 94%;
+    }
+
+    .era-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .era-image {
+        height: 100px;
+    }
+
+    footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 25px 20px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .hero-title {
+        font-size: 36px;
+    }
+
+    .weather {
+        margin-bottom: 18px;
+    }
+
+    .main-card {
+        padding: 25px 18px;
+    }
+
+    .era-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+    }
+
+    .era-content {
+        padding: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="school-logo">
+
+        <!-- 나중에 GitHub에 logo.png를 올리면 자동으로 표시됩니다 -->
+        <img src="logo.png" alt="영훈국제중학교">
+
+        <div class="school-name">
+            YOUNGHOON<br>
+            INTERNATIONAL MIDDLE SCHOOL
+        </div>
+
+    </div>
+
+    <nav>
+        <a href="#">홈</a>
+        <a href="#">인물 소개</a>
+        <a href="#">시대별 보기</a>
+        <a href="#">검색 🔍</a>
+    </nav>
+
+    <div class="credit">
+        Made by 16기 역덕 for 지현T
+    </div>
+
+    <div class="menu">☰</div>
+
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <div class="date">
+            2026년 10월 8일 목요일
+        </div>
+
+        <div class="weather">
+
+            <div class="weather-icon">☀</div>
+
+            <div>
+                <div class="temperature">18°C</div>
+                <div class="weather-info">
+                    맑음 · 서울
+                </div>
+            </div>
+
+        </div>
+
+        <h1 class="hero-title">
+            1일 1한국사 인물
+        </h1>
+
+        <div class="hero-subtitle">
+            오늘, 한국사의 한 페이지를 만나다
+        </div>
+
+    </div>
+
+</section>
+
+
+<main>
+
+<div class="container">
+
+    <div class="main-card">
+
+        <div>
+
+            <div class="badge">
+                오늘의 인물
+            </div>
+
+            <h2 class="person-name">
+                세종대왕
+            </h2>
+
+            <div class="person-life">
+                1397년 5월 15일 ~ 1450년 4월 17일
+            </div>
+
+            <div class="highlight">
+                훈민정음을 창제하여 백성들이 쉽게 글을 사용할 수 있도록 하다.
+            </div>
+
+            <p class="description">
+                세종대왕은 조선의 제4대 왕으로,
+                훈민정음을 창제하여 백성들이 글을 읽고 쓸 수 있는
+                기회를 넓혔습니다. 또한 과학, 의학, 농업, 음악 등
+                다양한 분야에서 여러 업적을 남겼습니다.
+            </p>
+
+            <a href="#" class="more-button">
+                자세히 보기 →
+            </a>
+
+        </div>
+
+
+        <div class="side">
+
+            <div class="side-card">
+
+                <div class="side-title">
+                    📖 오늘의 역사
+                </div>
+
+                <div class="side-text">
+                    1907년 10월 8일<br><br>
+                    오늘과 관련된 한국사의 사건을
+                    소개합니다.
+                </div>
+
+                <div class="side-more">
+                    더보기 →
+                </div>
+
+            </div>
+
+
+            <div class="side-card">
+
+                <div class="side-title">
+                    📜 오늘의 인물 한마디
+                </div>
+
+                <div class="side-text">
+                    “오늘의 작은 관심이<br>
+                    역사를 바라보는 눈을 만듭니다.”
+                </div>
+
+                <div class="side-more">
+                    — 1일 1한국사 인물
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<section class="eras">
+
+    <div class="section-title">
+
+        <h2>
+            시대별 인물 더보기
+        </h2>
+
+        <span>
+            전체 보기 →
+        </span>
+
+    </div>
+
+
+    <div class="era-grid">
+
+        <div class="era">
+            <div class="era-image"></div>
+            <div class="era-content">
+                <div class="era-name">고대</div>
+                <div class="era-desc">고조선 · 삼국시대</div>
+            </div>
+        </div>
+
+        <div class="era">
+            <div class="era-image"></div>
+            <div class="era-content">
+                <div class="era-name">고려</div>
+                <div class="era-desc">고려시대</div>
+            </div>
+        </div>
+
+        <div class="era">
+            <div class="era-image"></div>
+            <div class="era-content">
+                <div class="era-name">조선</div>
+                <div class="era-desc">조선시대</div>
+            </div>
+        </div>
+
+        <div class="era">
+            <div class="era-image"></div>
+            <div class="era-content">
+                <div class="era-name">개항기</div>
+                <div class="era-desc">근대의 시작</div>
+            </div>
+        </div>
+
+        <div class="era">
+            <div class="era-image"></div>
+            <div class="era-content">
+                <div class="era-name">일제강점기</div>
+                <div class="era-desc">독립을 위한 싸움</div>
+            </div>
+        </div>
+
+        <div class="era">
+            <div class="era-image"></div>
+            <div class="era-content">
+                <div class="era-name">현대</div>
+                <div class="era-desc">대한민국의 오늘</div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+    <div>
+        © 2026 1일 1한국사 인물.
+    </div>
+
+    <div class="made">
+        Made by 16기 역덕 for 지현T
+    </div>
+
+</footer>
+
+</body>
+</html>
